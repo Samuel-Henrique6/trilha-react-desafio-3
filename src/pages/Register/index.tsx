@@ -20,6 +20,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 import { api } from "../../services/api";
+import { IRegister } from "./types";
 
 const schema = yup
   .object({
@@ -46,7 +47,7 @@ const Register = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = async ({ name, email, password }) => {
+  const onSubmit = async ({ name, email, password }: IRegister) => {
     try {
       const newUser = {
         name,
@@ -59,8 +60,8 @@ const Register = () => {
       setTimeout(() => {
         navigate("/login");
       }, 2000);
-    } catch (error) {
-      alert("Houve um erro, tente novamente!", error);
+    } catch {
+      alert("Houve um erro, tente novamente!");
     }
   };
 

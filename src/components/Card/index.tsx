@@ -7,8 +7,9 @@ import {
   UserInfo,
   UserPicture,
 } from "./styles";
+import { ICard } from "./types";
 
-const Card = ({ image }) => {
+const Card = ({ image }: ICard) => {
   return (
     <CardContainer>
       <ImageBackground />

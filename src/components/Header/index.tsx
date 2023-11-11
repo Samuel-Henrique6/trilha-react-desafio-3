@@ -13,8 +13,9 @@ import {
 
 import perfil from "../../assets/perfil.png";
 import { useNavigate } from "react-router-dom";
+import { IHeader } from "./types";
 
-const Header = ({ autenticado }) => {
+const Header = ({ autenticado }: IHeader) => {
   const navigate = useNavigate();
 
   return (

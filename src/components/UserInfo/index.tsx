@@ -1,6 +1,7 @@
 import { Container, NameText, Progress, UserPicture } from "./styles";
+import { IUserInfo } from "./types";
 
-const UserInfo = ({ name, image, percentage }) => {
+const UserInfo = ({ name, image, percentage }: IUserInfo) => {
   return (
     <Container>
       <UserPicture src={image} />

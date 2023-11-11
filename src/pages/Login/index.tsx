@@ -19,6 +19,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 import { api } from "../../services/api";
+import { IFormData } from "./types";
 
 const schema = yup
   .object({
@@ -35,20 +36,20 @@ const Login = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
+    formState: { errors, isValid },
+  } = useForm<IFormData>({
     resolver: yupResolver(schema),
     mode: "onBlur",
   });
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: IFormData) => {
     try {
       const { data } = await api.get(
         `users?email=${formData.email}&password=${formData.password}`
       );
       data.length === 1 ? navigate("/feed") : alert("Email ou senha inválido!");
-    } catch (error) {
-      alert("Houve um erro, tente novamente!", error);
+    } catch {
+      alert("Houve um erro, tente novamente!");
     }
   };
 
@@ -81,7 +82,12 @@ const Login = () => {
                 type="password"
               />
               <br />
-              <Button title="Entrar" variant="tertiary" type="submit" />
+              <Button
+                title="Entrar"
+                variant="tertiary"
+                type="submit"
+                disabled={!isValid}
+              />
               <br />
             </form>
             <Row>
